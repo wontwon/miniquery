@@ -70,7 +70,6 @@ Create a module called EventDispatcher that allows us to do the following:
 
 Hints:
 
-- Read [Observer Pattern chapter of Javascript Design Patterns](http://addyosmani.com/resources/essentialjsdesignpatterns/book/#observerpatternjavascript), most importantly Observer vs Pub/Sub and Publish/Subscribe Implementations sections.
 - Read about events, [here is a start](https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Creating_and_triggering_events)
 
 Implement the following functionalities:
