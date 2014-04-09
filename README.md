@@ -76,8 +76,8 @@ Implement the following functionalities:
 
 ```javascript
 EventDispatcher.on('.klass', 'shadi', function() { console.log("awesome") });
-// this should print "awesome" in the console.
 EventDispatcher.trigger('.klass', 'shadi');
+// this should print "awesome" in the console.
 ```
 
 ###Release 3: Ajax
@@ -104,7 +104,7 @@ Let's namespace all of our tools/libraries into one awesome toolbelt: miniQuery.
 
 ```javascript
 // selectors:
-miniQuery('.kalss')
+miniQuery('.klass')
 miniQuery('#eyed')
 miniQuery('a')
 // DOM manipulation
@@ -114,7 +114,7 @@ miniQuery('.klass').addClass();
 miniQuery('.klass').removeClass();
 // Event Dispatch
 miniQuery('.klass').on('shadi', function() { console.log("awesome") });
-miniQuery('.klass).trigger('shadi');
+miniQuery('.klass').trigger('shadi');
 // ajax
 miniQuery.ajax({
  url: 'someurl',
