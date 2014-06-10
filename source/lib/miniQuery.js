@@ -21,6 +21,7 @@ function identifySelector(selector_to_identify){
 		var elementName = selector_to_identify;
 		var modifiedElementName = elementName.split("#").pop();
 		return document.getElementById(modifiedElementName);
+<<<<<<< HEAD
   } 
   else if (selector_to_identify.match(/^\./)) {
   	var elementName = selector_to_identify;
