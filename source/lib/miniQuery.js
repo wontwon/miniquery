@@ -23,7 +23,15 @@ var DOM = {
 }
 
 var EventDispatcher = {
-    on: function() {
-
+    event: {},
+    on: function(element, triggerName, funktion) {
+        this.event = new Event(triggerName);
+        SweetSelector.select(element).addEventListener(triggerName, funktion, false);
     }
+
+    ,
+    trigger: function(element) {
+        SweetSelector.select(element).dispatchEvent(this.event);
+    }
+
 }
