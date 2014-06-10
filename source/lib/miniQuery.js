@@ -1,3 +1,25 @@
 /*!
  * minQuery
  */
+
+
+////////////// MODULE //////////////////
+
+ $weetSelector = {};
+
+////////////////////////////////////////
+
+
+///Element, class, tag selector////////
+
+$weetSelector.select = function(context) {
+	return document.querySelector(context);
+}
+
+////////////////////////////////////////
+
+
+
+
+
+
