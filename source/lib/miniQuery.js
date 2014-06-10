@@ -14,8 +14,8 @@ function identifySelector(selector_to_identify){
 		var elementName = selector_to_identify;
 		var modifiedElementName = elementName.split("#").pop();
 		return document.getElementById(modifiedElementName);
-  } else if (selector_to_identify.match(/^\./)) {
-  	var elementName = selector_to_identify;
+  	} else if (selector_to_identify.match(/^\./)) {
+  		var elementName = selector_to_identify;
 		var modifiedElementName = elementName.split(".").pop();
 		return document.getElementByClassName(selector_to_identify)
 	} else {
