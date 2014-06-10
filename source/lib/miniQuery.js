@@ -2,11 +2,18 @@ var sweetSelector = {
 
 	select: function (selector) {
 
-		identifySelector(selector)
+		return identifySelector(selector)
 
 	}
 
 }
+
+var DOM = {}
+
+DOM.hide = function(selecto){
+	sweetSelector.select(selecto).style.display = 'none';
+}
+
 
 function identifySelector(selector_to_identify){
 
@@ -14,20 +21,17 @@ function identifySelector(selector_to_identify){
 		var elementName = selector_to_identify;
 		var modifiedElementName = elementName.split("#").pop();
 		return document.getElementById(modifiedElementName);
-  } else if (selector_to_identify.match(/^\./)) {
+  } 
+  else if (selector_to_identify.match(/^\./)) {
   	var elementName = selector_to_identify;
 		var modifiedElementName = elementName.split(".").pop();
 		return document.getElementByClassName(selector_to_identify)
-	} else {
+	} 
+	else {
 		return document.getElementByTagName(selector_to_identify)
 	}
 
 }
 
-var DOM = {}
-
-DOM.hide = {
-
-}
 
 
