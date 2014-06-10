@@ -20,3 +20,11 @@ DOM.show = function(cssTag){
         curElem.style.display = curElemOGDisplay;
     }
 }
+
+DOM.addClass = function( cssTag, newClass ){
+    SweetSelector.select(cssTag).classList.add(newClass);
+}
+
+DOM.removeClass = function( cssTag, dropClass ){
+    SweetSelector.select(cssTag).classList.remove(dropClass);
+}
