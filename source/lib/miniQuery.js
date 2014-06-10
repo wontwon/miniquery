@@ -28,3 +28,14 @@ DOM.addClass = function( cssTag, newClass ){
 DOM.removeClass = function( cssTag, dropClass ){
     SweetSelector.select(cssTag).classList.remove(dropClass);
 }
+
+var EventDispatcher = {};
+
+EventDispatcher.on = function(cssTag, triggerName, funktion){
+    SweetSelector.select(cssTag)[triggerName] = funktion;
+}
+
+EventDispatcher.trigger = function(cssTag, triggerName){
+    SweetSelector.select(cssTag)[triggerName]();
+}
+
