@@ -18,11 +18,12 @@ var DOM = {
 
 	show: function(selector){
 		sweetSelector.select(selector).style.display = '';
-	}
+	},
 
-	// addClass: function(selector, newClassName){
-	// 	document.getElementByClassName(selector).className += "foo";
-	// }
+	addClass: function(selector, newClassName){
+		el = sweetSelector.select(selector);
+		el.className += (" " + newClassName);
+	}
 
 };
 
