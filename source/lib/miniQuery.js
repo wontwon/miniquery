@@ -1,65 +1,66 @@
-var MQ = {};
-
-MQ.SweetSelector = {};
-
-MQ.SweetSelector.select = function(cssTag){
-        return document.querySelectorAll(cssTag);
+function $(selector){
+    return (new CashMoney(selector))
 }
 
-MQ.DOM = {};
-MQ.DOM.displays = {};
-
-MQ.DOM.hide = function(cssTag){
-    var curElems = MQ.SweetSelector.select(cssTag)
-    for(var i = 0; i < curElems.length; i++){
-        MQ.DOM.displays[curElems[i]] = curElems[i].style.display
-        curElems[i].style.display = "none";
-    }
+var CashMoney = function(selector){
+    this.selector = selector;
 }
 
-MQ.DOM.show = function(cssTag){
-    var curElems = MQ.SweetSelector.select(cssTag);
-    for(var i = 0; i < curElems.length; i++){
-        var curElemOGDisplay = MQ.DOM.displays[curElems[i]];
-        if( curElemOGDisplay ){
-            curElems[i].style.display = curElemOGDisplay;
-        }else{
-            curElems[i].style.display = "";
+$.events = {};
+$.displays = {};
+
+CashMoney.prototype = {
+    select: function(){
+        return document.querySelectorAll(this.selector);
+    },
+    hide: function(){
+        var elems = this.select();
+        for(var i = 0; i < elems.length; i++){
+            $.displays[elems[i]] = elems[i].style.display
+            elems[i].style.display = 'none';
+        }
+    },
+    show: function(){
+        var elems = this.select();
+        for(var i = 0; i < elems.length; i++){
+            elems[i].style.display = $.displays[elems[i]] || "";
+        }
+    },
+    addClass: function(newClass){
+        var elems = this.select();
+        for(var i = 0; i < elems.length; i++){
+            elems[i].classList.add(newClass);
+        }
+    },
+    removeClass: function(newClass){
+        var elems = this.select();
+        for(var i = 0; i < elems.length; i++){
+            elems[i].classList.remove(newClass);
+        }
+    },
+    on: function(triggerName, funktion){
+        $.events[triggerName] = new Event(triggerName);
+        var elems = this.select();
+        for(var i = 0; i < elems.length; i++){
+            elems[i].addEventListener(triggerName, funktion, false);
+        }
+    },
+    trigger: function(triggerName){
+        var elems = this.select();
+        for(var i = 0; i < elems.length; i++){
+            elems[i].dispatchEvent($.events[triggerName]);
+        }
+    },
+    request: function(options){
+        var oReq = new XMLHttpRequest();
+        oReq.onload = options.success;
+        oReq.open( options.type, options.url);
+        oReq.send();
+    },
+    css: function(newStyle, value){
+        var elems = this.select();
+        for(var i = 0; i < elems.length; i++){
+            elems[i].style[newStyle] = value;
         }
     }
-}
-
-MQ.DOM.addClass = function( cssTag, newClass ){
-    MQ.SweetSelector.select(cssTag).classList.add(newClass);
-}
-
-MQ.DOM.removeClass = function( cssTag, dropClass ){
-    MQ.SweetSelector.select(cssTag).classList.remove(dropClass);
-}
-
-MQ.EventDispatcher = {};
-MQ.EventDispatcher.events = {};
-
-MQ.EventDispatcher.on = function(cssTag, triggerName, funktion){
-    var selectedItems = MQ.SweetSelector.select(cssTag);
-    this.events[triggerName] = new Event(triggerName);
-    for(var i = 0; i < selectedItems.length; i++){
-        selectedItems[i].addEventListener(triggerName, funktion, false);
-    }
-}
-
-MQ.EventDispatcher.trigger = function(cssTag, triggerName){
-    var selectedItems = MQ.SweetSelector.select(cssTag);
-    for(var i = 0; i < selectedItems.length; i++){
-        selectedItems[i].dispatchEvent(this.events[triggerName]);
-    }
-}
-
-MQ.AjaxWrapper = {};
-
-MQ.AjaxWrapper.request = function(options){
-    var oReq = new XMLHttpRequest();
-    oReq.onload = options.success;
-    oReq.open( options.type, options.url, (options.async || true) );
-    oReq.send();
 }
