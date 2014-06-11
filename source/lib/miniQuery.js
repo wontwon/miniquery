@@ -33,14 +33,51 @@ DOM = {
 	addClass: function(selector, klassName) {
 		var elements = SweetSelector.select(selector);
 		for (var i=0; i<elements.length; i++) {
-			elements[i].setAttribute("class", klassName);
+			elements[i].classList.add(klassName);
 		}
 	},
 
 	removeClass: function(selector, klassName) {
 		var elements = SweetSelector.select(selector);
 		for (var i=0; i<elements.length; i++) {
-			elements[i].removeAttribute("class", klassName);
+			elements[i].classList.remove(klassName);
 		}
 	}
 }
+
+EventDispatcher = {
+	event: {},
+
+	on: function(selector, eventName, response) {
+		this.event = new Event(eventName)
+		var elements = SweetSelector.select(selector);
+		for (var i=0; i<elements.length; i++) {
+			elements[i].addEventListener(eventName, response, false);
+		}
+	},
+
+	trigger: function(selector, eventName) {
+		var elements = SweetSelector.select(selector);
+		for (var i=0; i<elements.length; i++) {
+			elements[i].dispatchEvent(this.event);
+		}
+	}
+}
+
+AjaxWrapper = {
+	request: function(data) {
+		var client = new XMLHttpRequest();
+		client.open(data.type, data.url, true);
+		client.send();
+		client.onreadystatechange = function() {
+			// console.log(client.status)
+			if(client.readyState == 4) {
+				data.success();
+			}
+			else {
+				data.fail();
+			}
+		};
+	}
+}
+
