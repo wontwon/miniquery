@@ -57,3 +57,19 @@ DOM.removeClass	= function(existing, removable) {
 }
 
 
+
+
+///////// EVENTDISPATCH MODULE /////////
+
+ EventDispatch = {};
+
+////////////////////////////////////////
+
+
+EventDispatch.on = function(target, trigger()) {
+
+}
+
+EventDispatch.trigger = function(target) {
+	
+}
