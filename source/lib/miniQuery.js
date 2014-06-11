@@ -1,37 +1,54 @@
-var SweetSelector = {
-    select: function(element) {
-        return document.querySelector(element);
-    }
+function $(element) {
+    return (new miniQuery(element));
 }
 
+function miniQuery(element) {
+    this.element = element;
+    this.elements = document.querySelectorAll(element);
+}
 
-var DOM = {
-    hide: function(element) {
-        SweetSelector.select(element).style.display = "none";
+miniQuery.prototype = {
+    hide: function() {
+        for (var i = 0; i < this.elements.length; i++) {
+            (this.elements[i]).style.display = "none";
+        }
     },
-    show: function(element) {
-        SweetSelector.select(element).style.display = "inline";
-    }
-
-    ,
-    addClass: function(element, klass) {
-        SweetSelector.select(element).classList.add(klass)
+    show: function() {
+        for (var i = 0; i < this.elements.length; i++) {
+            (this.elements[i]).style.display = "block";
+        }
     },
-    removeClass: function(element, klass) {
-        SweetSelector.select(element).classList.remove(klass)
+    addClass: function(klass) {
+        for (var i = 0; i < this.elements.length; i++) {
+            this.elements[i].classList.add(klass)
+        }
+    },
+    removeClass: function(klass) {
+        for (var i = 0; i < this.elements.length; i++) {
+            this.elements[i].classList.remove(klass)
+        }
+    },
+    on: function(triggerName, funktion) {
+        event = new Event(triggerName);
+        for (var i = 0; i < this.elements.length; i++) {
+            this.elements[i].addEventListener(triggerName, funktion, false);
+        }
+    },
+    trigger: function(triggerName) {
+        for (var i = 0; i < this.elements.length; i++) {
+            this.elements[i].dispatchEvent(event);
+        }
     }
 }
 
-var EventDispatcher = {
-    event: {},
-    on: function(element, triggerName, funktion) {
-        this.event = new Event(triggerName);
-        SweetSelector.select(element).addEventListener(triggerName, funktion, false);
-    }
 
-    ,
-    trigger: function(element) {
-        SweetSelector.select(element).dispatchEvent(this.event);
-    }
 
-}
+// }
+
+// var AjaxWrapper = {
+//     request: function(options) {
+//         var oReq = new XMLHttpRequest();
+//         oReq.onload = options.success;
+//         oReq.open(options.method, options.url, true);
+//         oReq.send();
+//     }
