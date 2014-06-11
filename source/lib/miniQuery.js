@@ -22,27 +22,27 @@ SweetSelector.getElement = function(tag){
 
 DOM = {};
 DOM.hide = function(elements){
-  elementList = SweetSelector.select(elements);
+  var elementList = SweetSelector.select(elements);
   for (i=0;i < elementList.length;i++){
     elementList[i].setAttribute("style", "display: none;");
     // DOM._hideElement(elements[i])
   }
 }
 DOM.show = function(elements){
-  elementList = SweetSelector.select(elements);
+  var elementList = SweetSelector.select(elements);
   for (i=0;i < elementList.length;i++){
     elementList[i].setAttribute("style", "display: block;");
   }
 }
 
 DOM.addClass = function(elements, addClass){
-  elementList = SweetSelector.select(elements);
+  var elementList = SweetSelector.select(elements);
   for (i=0;i < elementList.length;i++){
     elementList[i].classList.add(addClass);
   }
 }
 DOM.removeClass = function(elements, removeClass){
-  elementList = SweetSelector.select(elements);
+  var elementList = SweetSelector.select(elements);
   for (i=0;i < elementList.length;i++){
     elementList[i].classList.remove(removeClass);
   }
